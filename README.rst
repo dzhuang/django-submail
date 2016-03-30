@@ -110,7 +110,7 @@ You can optionally run the demo using ``virtualenv``.
     
     pip install virtualenv
     virtualenv venv
-    venv\scripts\activate
+    venv/scripts/activate
 
 Then
 
