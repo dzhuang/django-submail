@@ -1,0 +1,27 @@
+<html>
+    <body>
+        <h2> {{ title }} -- Result </h2>
+        {% if result.success_count > 0 %}
+            <p>Success count: {{ result.success_count}} </p>
+        {% endif %}
+        {% if result.success_message %}
+            <p>Success message</p>
+            <ul>
+                {% for message in result.success_message %}
+                <li>{{message}}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% if result.error_count > 0 %}
+            <p>Error count: {{ result.error_count}} </p>
+        {% endif %}
+        {% if result.error_message %}
+            <p>Error message</p>
+            <ul>
+            {% for message in result.error_message %}
+                <li>{{message}}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    </body>
+</html>

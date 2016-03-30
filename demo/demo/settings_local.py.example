@@ -1,0 +1,9 @@
+SUBMAIL_APP_ID = "your_sumail_appid"
+SUBMAIL_APP_KEY = "your_sumail_appkey"
+ANOTHER_SUBMAIL_APP_ID = "your_another_sumail_appid"
+ANOTHER_SUBMAIL_APP_KEY = "your_another_sumail_appkey"
+DEFAULT_FROM_EMAIL = 'Test <dongzhuang@example.com>'
+ROBOT_EMAIL_FROM = 'no-reply <no-reply@example.com>'
+
+RECIPIENT_LIST = ["hello@example.com", "dongzhuang@foo.com"]
+REPLY_TO = "dongzhuang@bar.com"

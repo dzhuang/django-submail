@@ -1,0 +1,8 @@
+.eggs
+build
+dist
+django_submail.egg-info
+/demo/*.sqlite3
+/demo/demo/settings_local.py
+*.pyc
+*~
