@@ -53,11 +53,16 @@ class SubmailBackend(BaseEmailBackend):
         if not emails:
             return
 
-        result = []
+        result = 0
         for email in emails:
             mail = build_sm_mail(email)
-            result.append(mail.send())
-        return result
+            response = mail.send()
+            if response["status"] == "success":
+                result += 1
+        if result:
+            return result
+        else:
+            return None
 
 
 def build_sm_mail(email):
