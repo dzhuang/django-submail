@@ -3,8 +3,8 @@ Submail message/xsend API demo
 SUBMAIL SDK Version 1.0.1 --python
 copyright 2011 - 2014 SUBMAIL
 '''
-from message_xsend import MESSAGEXsend
-from app_configs import MESSAGE_CONFIGS
+from .message_xsend import MESSAGEXsend
+from .app_configs import MESSAGE_CONFIGS
 
 '''
 init MESSAGEXsend class
@@ -38,4 +38,4 @@ submail email text content filter
 @Multi-para
 '''
 submail.add_var('code','198276')
-print submail.xsend()
+print(submail.xsend())

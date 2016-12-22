@@ -1,4 +1,4 @@
-from mail import Mail
+from .mail import Mail
 import json
 
 class MAILSend:
@@ -23,7 +23,7 @@ class MAILSend:
         @options: normal or md5 or sha1
         '''
         self.sign_type = ''
-        if configs.has_key('sign_type') == True:
+        if 'sign_type' in configs:
             self.sign_type = configs['sign_type']
 
         '''

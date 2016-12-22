@@ -131,6 +131,6 @@ REPLY_TO = "dongzhuang@bar.com"
 # You can alse configure it in settings_local.py, which will be
 # excluded from git, see settings_local.py.example as example
 try:
-    from settings_local import *
+    from .settings_local import *
 except:
     pass

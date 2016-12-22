@@ -1,4 +1,4 @@
-from mail import Mail
+from .mail import Mail
 class ADDRESSBOOKMail:
     '''
     Init appid,appkey,sign_type(Optional)

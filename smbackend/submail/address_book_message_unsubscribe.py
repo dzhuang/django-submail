@@ -3,8 +3,8 @@ Submail addressbook/message/unsubscribe API demo
 SUBMAIL SDK Version 1.0.1 --python
 copyright 2011 - 2014 SUBMAIL
 '''
-from app_configs import MESSAGE_CONFIGS
-from address_book_message import ADDRESSBOOKMessage
+from .app_configs import MESSAGE_CONFIGS
+from .address_book_message import ADDRESSBOOKMessage
 '''
 init MESSAGEXsend class
 '''
@@ -23,4 +23,4 @@ set target addressbook sign : Optional
 default value: subscribe
 '''
 #addressbook.set_address_book('unsubscribe')
-print addressbook.unsubscribe()
+print(addressbook.unsubscribe())

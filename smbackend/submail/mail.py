@@ -1,6 +1,7 @@
 import hashlib
-import urllib2
-import urllib
+from six.moves.urllib.request import urlopen  # noqa
+from six.moves.urllib.parse import urlencode  # noqa
+
 
 class Mail:
     '''
@@ -43,11 +44,11 @@ class Mail:
             self.signature = hash.hexdigest()
 
     def __http_get(self,url):
-        return eval(urllib2.urlopen(url = url).read())
+        return eval(urlopen(url = url).read())
 
     def __http_post(self, url, para):
-        data = urllib.urlencode(para) 
-        return eval(urllib2.urlopen(url=url,data = data).read())
+        data = urlencode(para)
+        return eval(urlopen(url=url,data = data.encode()).read())
          
     '''
     @getTimestamp
@@ -80,7 +81,7 @@ class Mail:
         @setup sign_type
         '''
         sign_type_state = ['normal','md5','sha1']
-        if self.mail_configs.has_key('sign_type') == False:
+        if 'sign_type' not in self.mail_configs:
             self.sign_type = 'normal'
         elif self.mail_configs['sign_type'] not in sign_type_state:
             self.sign_type = 'normal'
@@ -98,7 +99,7 @@ class Mail:
         create final API post query End
         '''
 
-        print request
+        #print(request)
         '''
         @send request
         '''
@@ -128,7 +129,7 @@ class Mail:
         @setup sign_type
         '''
         sign_type_state = ['normal','md5','sha1']
-        if self.mail_configs.has_key('sign_type') == False:
+        if 'sign_type' not in self.mail_configs:
             self.sign_type = 'normal'
         elif self.mail_configs['sign_type'] not in sign_type_state:
             self.sign_type = 'normal'
@@ -174,7 +175,7 @@ class Mail:
         @setup sign_type
         '''
         sign_type_state = ['normal','md5','sha1']
-        if self.mail_configs.has_key('sign_type') == False:
+        if 'sign_type' not in self.mail_configs:
             self.sign_type = 'normal'
         elif self.mail_configs['sign_type'] not in sign_type_state:
             self.sign_type = 'normal'
@@ -219,7 +220,7 @@ class Mail:
         @setup sign_type
         '''
         sign_type_state = ['normal','md5','sha1']
-        if self.mail_configs.has_key('sign_type') == False:
+        if 'sign_type' not in self.mail_configs:
             self.sign_type = 'normal'
         elif self.mail_configs['sign_type'] not in sign_type_state:
             self.sign_type = 'normal'
@@ -247,5 +248,5 @@ class Mail:
 '''
 if __name__ == '__main__':
        mail_obj = Mail()
-       print mail_obj.get_timestamp()
+       print(mail_obj.get_timestamp())
 '''

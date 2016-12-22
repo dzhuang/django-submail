@@ -1,4 +1,4 @@
-from message import Message
+from .message import Message
 class ADDRESSBOOKMessage:
     '''
     Init appid,appkey,sign_type(Optional)

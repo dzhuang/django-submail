@@ -3,8 +3,8 @@ Submail mail/send API demo
 SUBMAIL SDK Version 1.0.1 --python
 copyright 2011 - 2014 SUBMAIL
 '''
-from mail_send import MAILSend
-from app_configs import MAIL_CONFIGS
+from .mail_send import MAILSend
+from .app_configs import MAIL_CONFIGS
 
 '''
 init MESSAGEXsend class
@@ -94,4 +94,4 @@ Attachment
 '''
 submail.add_attachment('/root/test')
 submail.add_attachment('/roo/test1')
-print submail.send()
+print(submail.send())

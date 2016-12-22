@@ -3,8 +3,8 @@ Submail mail/xsend API demo
 SUBMAIL SDK Version 1.0.1 --python
 copyright 2011 - 2014 SUBMAIL
 '''
-from mail_xsend import MAILXsend
-from app_configs import MAIL_CONFIGS
+from .mail_xsend import MAILXsend
+from .app_configs import MAIL_CONFIGS
 
 '''
 init MESSAGEXsend class
@@ -76,4 +76,4 @@ email headers
 '''
 submail.add_header('X-Accept','zh-cn')
 submail.add_header('X-Mailer','leo App')
-print submail.xsend()
+print(submail.xsend())

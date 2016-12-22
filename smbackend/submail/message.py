@@ -1,6 +1,7 @@
 import hashlib
-import urllib2
-import urllib
+from six.moves.urllib.request import urlopen  # noqa
+from six.moves.urllib.parse import urlencode  # noqa
+
 
 class Message:
     '''
@@ -42,11 +43,11 @@ class Message:
             self.signature = hash.hexdigest()
 
     def __http_get(self,url):
-        return eval(urllib2.urlopen(url = url).read())
+        return eval(urlopen(url = url).read())
 
     def __http_post(self, url, para):
-        data = urllib.urlencode(para) 
-        resp = urllib2.urlopen(url=url,data = data).read()
+        data = urlencode(para)
+        resp = urlopen(url=url,data = data.encode()).read()
         return eval(resp)
          
     '''
@@ -80,7 +81,7 @@ class Message:
         @setup sign_type
         '''
         sign_type_state = ['normal','md5','sha1']
-        if self.message_configs.has_key('sign_type') == False:
+        if 'sign_type' not in self.message_configs:
             self.sign_type = 'normal'
         elif self.message_configs['sign_type'] not in sign_type_state:
             self.sign_type = 'normal'
@@ -126,7 +127,7 @@ class Message:
         @setup sign_type
         '''
         sign_type_state = ['normal','md5','sha1']
-        if self.message_configs.has_key('sign_type') == False:
+        if 'sign_type' not in self.message_configs:
             self.sign_type = 'normal'
         elif self.message_configs['sign_type'] not in sign_type_state:
             self.sign_type = 'normal'
@@ -171,7 +172,7 @@ class Message:
         @setup sign_type
         '''
         sign_type_state = ['normal','md5','sha1']
-        if self.message_configs.has_key('sign_type') == False:
+        if 'sign_type' not in self.message_configs:
             self.sign_type = 'normal'
         elif self.message_configs['sign_type'] not in sign_type_state:
             self.sign_type = 'normal'
@@ -217,7 +218,7 @@ class Message:
         @setup sign_type
         '''
         sign_type_state = ['normal','md5','sha1']
-        if self.message_configs.has_key('sign_type') == False:
+        if 'sign_type' not in self.message_configs:
             self.sign_type = 'normal'
         elif self.message_configs['sign_type'] not in sign_type_state:
             self.sign_type = 'normal'
