@@ -35,7 +35,7 @@ from email.utils import parseaddr
 
 from .submail.mail_send import MAILSend
 
-from .utils import split_addr_name, make_config
+from .utils import split_addr_name, make_config, make_django_email_subject
 
 
 class SubmailBackend(BaseEmailBackend):
@@ -94,7 +94,8 @@ def build_sm_mail(email):
             mail.set_reply(parseaddr(email.extra_headers["Reply-To"])[1])
 
     mail.set_text(email.body)
-    mail.set_subject(email.subject)
+    subject = make_django_email_subject(email.subject)
+    mail.set_subject(subject)
 
     if isinstance(email, EmailMultiAlternatives):
         for alt in email.alternatives:

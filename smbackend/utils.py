@@ -81,3 +81,9 @@ def make_config(email):
             "Both SUBMAIL_APP_ID and SUBMAIL_APP_KEY must be "
             "declared in settings.py or in your EmailMessage headers.")
     return config
+
+def make_django_email_subject(s):
+    if len(s) <= 100:
+        return s
+    return s[:97] + "..."
+
