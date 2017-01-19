@@ -93,14 +93,40 @@ def build_sm_mail(email):
         if "Reply-To" in email.extra_headers:
             mail.set_reply(parseaddr(email.extra_headers["Reply-To"])[1])
 
-    mail.set_text(email.body)
+    # if the email is have "reply-to" and the recepient is a qq.com email
+    # add notification not to reply at mobile clients.
+    has_qqmail_recepient = False
+    for e in email.to:
+        if "@qq.com" in e:
+            has_qqmail_recepient = True
+            break
+
+    qqmail_reply_to_html_alert = (
+        u'<p class="netdisk_hide"><strong>'
+        u'注意：QQ邮箱用户请勿使用手机客户端'
+        u'或微信客户端回复本邮件，请使用pc客户端回复.'
+        '</strong></p>')
+
+    if len(email.reply_to) > 0 and has_qqmail_recepient:
+        if email.body:
+            body = email.body
+            lines = body.splitlines()
+            html_body = "".join("<p>%s</p>" % line for line in lines)
+            html_body += qqmail_reply_to_html_alert
+            mail.set_html(html_body)
+    else:
+        mail.set_text(email.body)
+
     subject = make_django_email_subject(email.subject)
     mail.set_subject(subject)
 
     if isinstance(email, EmailMultiAlternatives):
         for alt in email.alternatives:
             if alt[1] == "text/html":
-                mail.set_html(alt[0])
+                if email.reply_to is not None and has_qqmail_recepient:
+                    mail.set_html(alt[0] + qqmail_reply_to_html_alert)
+                else:
+                    mail.set_html(alt[0])
 
     for attachment in email.attachments:
         mail.add_attachment(attachment)
