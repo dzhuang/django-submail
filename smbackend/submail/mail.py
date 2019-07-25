@@ -1,7 +1,8 @@
 import hashlib
 from six.moves.urllib.request import urlopen  # noqa
 from six.moves.urllib.parse import urlencode  # noqa
-
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
 
 class Mail:
     '''
@@ -27,13 +28,12 @@ class Mail:
     def __build_signature(self, request):
         appid = self.mail_configs['appid']
         appkey = self.mail_configs['appkey']
-        para_keys = request.keys();
-        para_keys.sort()
+        para_keys = sorted(list(request.keys()))
         sign_str = ''
         for key in para_keys:
             if key.find('attachments') == -1:
                 sign_str += "%s=%s&"%(key,request[key])
-        sign_str = appid+appkey+sign_str[:-1]+appid+appkey
+        sign_str = (appid+appkey+sign_str[:-1]+appid+appkey).encode()
         if self.sign_type == 'md5':
             hash=hashlib.md5()
             hash.update(sign_str)

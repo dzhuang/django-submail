@@ -1,6 +1,7 @@
 from setuptools import setup, find_packages
 import smbackend
 
+
 setup(
     name='django-submail',
     version=smbackend.__version__,
