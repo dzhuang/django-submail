@@ -34,7 +34,11 @@ from django.conf import settings
 from email.header import Header
 from email.utils import parseaddr
 
-from django.utils.encoding import force_text
+try:
+    from django.utils.encoding import force_text
+except ImportError:
+    from django.utils.encoding import force_str as force_text
+
 
 def split_addr_name(addr, encoding):
     if not isinstance(addr, tuple):
@@ -52,6 +56,7 @@ def split_addr_name(addr, encoding):
         else:
             addr = Header(addr, encoding).encode()
     return addr, nm
+
 
 def make_config(email):
     """
@@ -82,8 +87,8 @@ def make_config(email):
             "declared in settings.py or in your EmailMessage headers.")
     return config
 
+
 def make_django_email_subject(s):
     if len(s) <= 100:
         return s
     return s[:97] + "..."
-
